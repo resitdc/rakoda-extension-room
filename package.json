@@ -1,0 +1,70 @@
+{
+  "name": "rpl-room",
+  "displayName": "RPL Room",
+  "description": "Collaborative IDE classroom based on RPL Protocol",
+  "version": "1.0.2",
+  "icon": "media/logo.png",
+  "publisher": "restu13",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/resitdc/rakoda-extension-room"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "rpl-room",
+          "title": "RPL Room",
+          "icon": "media/logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "rpl-room": [
+        {
+          "type": "webview",
+          "id": "rakodaRoomSidebar",
+          "name": "RPL Room Collaboration"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "rakodaRoom.host",
+        "title": "RPL Room: Host Classroom"
+      },
+      {
+        "command": "rakodaRoom.join",
+        "title": "RPL Room: Join Classroom"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node",
+    "watch": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --watch",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js",
+    "build": "vsce package --no-dependencies",
+    "package": "vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^18.x",
+    "@types/uuid": "^10.0.0",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^3.9.2",
+    "esbuild": "^0.28.1",
+    "typescript": "^5.1.x"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}
